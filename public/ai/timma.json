@@ -1,0 +1,87 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "SpotRank Availability API",
+        "description": "Find businesses with next available appointment times by location.",
+        "version": "1.1.0"
+    },
+    "servers": [
+        {
+            "url": "https://getspotrank.com"
+        }
+    ],
+    "paths": {
+        "/api/test/hairdressers": {
+            "get": {
+                "operationId": "findAvailableHairdressers",
+                "summary": "Find next available hairdressers by location",
+                "description": "Returns hairdressers ordered by next available appointment time for a given city or area, including direct booking links.",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "City or area name, e.g. Helsinki, Tampere, Turku"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "query": {
+                                            "type": "string",
+                                            "example": "hairdresser tampere"
+                                        },
+                                        "results": {
+                                            "type": "array",
+                                            "items": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "id": {
+                                                        "type": "string",
+                                                        "description": "Provider ID (Timma businessId)"
+                                                    },
+                                                    "name": {
+                                                        "type": "string"
+                                                    },
+                                                    "city": {
+                                                        "type": "string"
+                                                    },
+                                                    "next_available": {
+                                                        "type": "string",
+                                                        "format": "date-time",
+                                                        "description": "Next available appointment time"
+                                                    },
+                                                    "booking": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "provider": {
+                                                                "type": "string",
+                                                                "example": "timma"
+                                                            },
+                                                            "url": {
+                                                                "type": "string",
+                                                                "description": "Direct booking URL"
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
