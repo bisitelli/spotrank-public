@@ -1,0 +1,17 @@
+{
+    "schema_version": "v1",
+    "name": "SpotRank Webfront",
+    "description": "Machine-readable business metadata and action interface for AI agents.",
+    "api": {
+        "type": "openapi",
+        "url": "https://getspotrank.com/webfront/{id}/ai"
+    },
+    "actions": {
+        "url": "https://getspotrank.com/webfront/{id}/ai/actions"
+    },
+    "permissions": {
+        "ai_access": "public"
+    },
+    "contact_email": "info@getspotrank.com",
+    "legal_info_url": "https://getspotrank.com/legal"
+}
